@@ -1,5 +1,9 @@
 CFLAGS := -Wall -std=c17
 
+ifeq ($(d),1)
+CFLAGS += -Og -g -gcodeview -Wl,-pdb=
+endif
+
 day1: day1.c
 day2: day2.c
 day3: day3.c
