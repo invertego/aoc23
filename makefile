@@ -1,7 +1,9 @@
-CFLAGS := -Wall -std=c17
+CFLAGS := -Wall -std=c17 #-fsanitize=address
 
 ifeq ($(d),1)
 CFLAGS += -Og -g -gcodeview -Wl,-pdb=
+else
+CFLAGS += -O3
 endif
 
 day1: day1.c
