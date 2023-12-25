@@ -1,3 +1,10 @@
 *.obj
 *.exe
 *.pdb
+
+day[1-9].txt
+day[1-2][0-9].txt
+day20cd.txt
+day20qx.txt
+day20rk.txt
+day20zf.txt
