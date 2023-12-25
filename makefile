@@ -1,4 +1,6 @@
-CFLAGS := -Wall -std=c17 #-fsanitize=address
+CFLAGS := -Wall -std=c17
+#CFLAGS += -fsanitize=address
+#CFLAGS += -fsanitize=undefined
 
 ifeq ($(d),1)
 CFLAGS += -Og -g -gcodeview -Wl,-pdb=
