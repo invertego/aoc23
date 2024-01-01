@@ -49,7 +49,7 @@ int main()
 {
     FILE* f = fopen("day13.txt", "r");
     char b[256];
-    int64_t sum = 0;
+    long long sum = 0;
 
     bool done = false;
     while (!done) {

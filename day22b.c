@@ -61,22 +61,22 @@ int main()
 {
     FILE* f = fopen("day22.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     while (fgets(b, sizeof(b), f)) {
         coord_t* br = bricks[brickcnt++].x;
         char* ctx;
-        char* t = strtok_s(b, ",", &ctx);
+        char* t = strtok_r(b, ",", &ctx);
         sscanf(t, "%d", &br[0][0]);
-        t = strtok_s(NULL, ",", &ctx);
+        t = strtok_r(NULL, ",", &ctx);
         sscanf(t, "%d", &br[0][1]);
-        t = strtok_s(NULL, "~", &ctx);
+        t = strtok_r(NULL, "~", &ctx);
         sscanf(t, "%d", &br[0][2]);
-        t = strtok_s(NULL, ",", &ctx);
+        t = strtok_r(NULL, ",", &ctx);
         sscanf(t, "%d", &br[1][0]);
-        t = strtok_s(NULL, ",", &ctx);
+        t = strtok_r(NULL, ",", &ctx);
         sscanf(t, "%d", &br[1][1]);
-        t = strtok_s(NULL, "\n", &ctx);
+        t = strtok_r(NULL, "\n", &ctx);
         sscanf(t, "%d", &br[1][2]);
         for (int i = 0; i < 3; i++) {
             int min = MIN(br[0][i], br[1][i]);

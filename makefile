@@ -1,11 +1,22 @@
-CFLAGS := -Wall -std=c17
+CFLAGS := -std=c17 -Wall -Wno-unused-result
 #CFLAGS += -fsanitize=address
 #CFLAGS += -fsanitize=undefined
+LDLIBS :=
 
 ifeq ($(d),1)
-CFLAGS += -Og -g -gcodeview -Wl,-pdb=
+CFLAGS += -Og -g
+ifeq ($(OS),Windows_NT)
+CFLAGS += -gcodeview -Wl,-pdb=
+endif
 else
 CFLAGS += -O3
+endif
+
+ifeq ($(OS),Windows_NT)
+CFLAGS += -D_CRT_SECURE_NO_WARNINGS -Dstrtok_r=strtok_s
+else
+CFLAGS += -D_POSIX_C_SOURCE=200809L
+LDLIBS += -lm
 endif
 
 day1: day1.c

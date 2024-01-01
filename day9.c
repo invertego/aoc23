@@ -29,9 +29,9 @@ int main()
         memset(a, 0, sizeof(a));
         int n = 0, m = 0;
         char* ctx;
-        for (char* t = strtok_s(b, " ", &ctx);
+        for (char* t = strtok_r(b, " ", &ctx);
             t;
-            t = strtok_s(NULL, " ", &ctx)) {
+            t = strtok_r(NULL, " ", &ctx)) {
             sscanf(t, "%d", &A(0,n++));
             //printf("%d ", A(0,n-1));
         }

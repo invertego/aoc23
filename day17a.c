@@ -99,13 +99,13 @@ int solve2()
         }
     }
 
-    coord_t S[1000];
-    int Sidx = 0;
+    //coord_t S[1000];
+    //int Sidx = 0;
     coord_t u = {m-1,n-1};
     if (prev[u.i][u.j].i >= 0 || (u.i == 0 && u.j == 0)) {
         while (u.i >= 0) {
             input[u.i][u.j] = '*';
-            S[Sidx++] = u;
+            //S[Sidx++] = u;
             u = prev[u.i][u.j];
         }
     }
@@ -119,7 +119,7 @@ int main()
 {
     FILE* f = fopen("day17.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     while (fgets(b, sizeof(b), f)) {
         *strchr(b, '\n') = 0;

@@ -10,14 +10,14 @@ typedef struct {
 
 tuple parse(char* b) {
     char* ctx;
-    char* t = strtok_s(b, " ", &ctx);
+    char* t = strtok_r(b, " ", &ctx);
     tuple rgb = {0};
     while (t) {
         int cnt;
         sscanf(t, "%d", &cnt);
         //printf("'%d' ", cnt);
         rgb.x[rgb.cnt++] = cnt;
-        t = strtok_s(NULL, " ", &ctx);
+        t = strtok_r(NULL, " ", &ctx);
     }
     //printf("\n%d\n", rgb.cnt);
     return rgb;
@@ -32,14 +32,14 @@ int main()
     int sum2 = 0;
     char* ctx;
     while (fgets(b, sizeof(b), f)) {
-        char* t = strtok_s(b, ":", &ctx);
+        char* t = strtok_r(b, ":", &ctx);
         if (!t) continue;
         int id;
         sscanf(strchr(t, ' '), "%d", &id);
         printf("id %d\n", id);
-        t = strtok_s(NULL, "|", &ctx);
+        t = strtok_r(NULL, "|", &ctx);
         tuple valid = parse(t);
-        t = strtok_s(NULL, "|", &ctx);
+        t = strtok_r(NULL, "|", &ctx);
         tuple have = parse(t);
         int points = 0;
         int wins = 0;

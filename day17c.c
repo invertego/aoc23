@@ -157,15 +157,15 @@ int solve2()
         int d = dist[KEY(m-1,n-1,k,l).v];
         if (shortest > d) shortest = d;
         printf("dist %d\n", d);
-        key_t S[1000];
-        int Sidx = 0;
+        //key_t S[1000];
+        //int Sidx = 0;
         key_t u = KEY(m-1,n-1,k,l);
         if (prev[u.v].v != UNDEFINED.v || (u.i == 0 && u.j == 0)) {
             while (u.v != UNDEFINED.v) {
                 input[u.i][u.j] =
                     "^v<>"[u.k];
                     //"0123"[u.l];
-                S[Sidx++] = u;
+                //S[Sidx++] = u;
                 u = prev[u.v];
             }
         
@@ -191,7 +191,7 @@ int main()
 {
     FILE* f = fopen("day17.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     while (fgets(b, sizeof(b), f)) {
         *strchr(b, '\n') = 0;

@@ -15,8 +15,8 @@ int main()
         cnt = 0;
 #if 1
         for (char *ctx,
-            *t = strtok_s(b, ":", &ctx);
-            (t = strtok_s(NULL, " ", &ctx));) {
+            *t = strtok_r(b, ":", &ctx);
+            (t = strtok_r(NULL, " ", &ctx));) {
             unsigned val;
             sscanf(t, "%u", &val);
             a[i][cnt++] = val;

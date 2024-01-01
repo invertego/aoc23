@@ -55,7 +55,7 @@ int main()
 {
     FILE* f = fopen("day14.txt", "r");
     char b[256];
-    int64_t sum = 0;
+    long long sum = 0;
 
     while (fgets(b, sizeof(b), f)) {
         *strchr(b, '\n') = 0;

@@ -27,15 +27,15 @@ rule_t parserule(char* str)
         r.cnd = strchr(str, '<') != NULL ? 1 : 2;
         
         char var[4] = {0};
-        strcpy(var, strtok_s(str, "<>", &ctx));
+        strcpy(var, strtok_r(str, "<>", &ctx));
         const char xmas[] = "xmas";
         r.var = strchr(xmas, var[0]) - xmas;
         //printf(" 0'%s'", var);
         
-        sscanf(strtok_s(NULL, ":", &ctx), "%d", &r.cmp);
+        sscanf(strtok_r(NULL, ":", &ctx), "%d", &r.cmp);
         //printf(" 1'%d'", r.cmp);
         
-        str = strtok_s(NULL, "", &ctx);
+        str = strtok_r(NULL, "", &ctx);
     }
     char tgt[4] = {0};
     strcpy(tgt, str);
@@ -80,19 +80,19 @@ bool eval(const int* rate)
 }
 
 typedef int range_t[2];
-int64_t pass;
-int64_t fail;
+long long pass;
+long long fail;
 
-int64_t count(range_t* rate)
+long long count(range_t* rate)
 {
-    int64_t prod = 1;
+    long long prod = 1;
     for (int i = 0; i < 4; i++) {
         prod *= rate[i][1] - rate[i][0] + 1;
     }
     return prod;
 }
 
-int64_t eval2(range_t* rate, int flow)
+long long eval2(range_t* rate, int flow)
 {
     if (flow == accept) return pass += count(rate);
     if (flow == reject) return fail += count(rate);
@@ -137,7 +137,7 @@ int main()
 {
     FILE* f = fopen("day19.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
     int flowcnt = 0;
     int partcnt = 0;
 
@@ -146,12 +146,12 @@ int main()
         *strchr(b, '}') = 0;
         //^[a-z]{2,3}\{([msxa][<>]\d{2,4}:(A|R|[a-z]{2,3}),)+(A|R|[a-z]{2,3})\}$
         char* ctx;
-        char* t = strtok_s(b, "{", &ctx);
+        char* t = strtok_r(b, "{", &ctx);
         char flow[4] = {0};
         strcpy(flow, t);
         //printf("'%s'", flow);
         flow_t* f = &flows[LABEL(flow)];
-        while ((t = strtok_s(NULL, ",", &ctx))) {
+        while ((t = strtok_r(NULL, ",", &ctx))) {
             f->rules[f->rulecnt++] = parserule(t);
         }
         //printf("\n");

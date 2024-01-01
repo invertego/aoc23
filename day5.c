@@ -26,9 +26,9 @@ int main()
     int seedcnt = 0;
     char* ctx;
     fgets(b, sizeof(b), f);
-    char* t = strtok_s(b, ":", &ctx);
+    char* t = strtok_r(b, ":", &ctx);
     while (true) {
-        t = strtok_s(NULL, " ", &ctx);
+        t = strtok_r(NULL, " ", &ctx);
         if (!t) break;
         unsigned val;
         sscanf(t, "%u", &val);

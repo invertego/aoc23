@@ -13,7 +13,7 @@
 #define TEXT(l) (text[0] = ((l) & 0x1f) + 0x60, text[1] = ((l) >> 5) + 0x60, text)
 char text[3];
 
-int64_t sum = 0, sum2 = 0;
+long long sum = 0, sum2 = 0;
 int press;
 bool trace = false;
 
@@ -107,9 +107,9 @@ int main()
         m->lbl = l;
         m->type = (l == broadcaster) ? '*' : b[0];
         char* ctx;
-        strtok_s(t, ">", &ctx);
+        strtok_r(t, ">", &ctx);
         printf("mod %c '%s'", m->type, TEXT(l));
-        while ((t = strtok_s(NULL, ", \n", &ctx))) {
+        while ((t = strtok_r(NULL, ", \n", &ctx))) {
             l = LABEL(t);
             m->tgts[m->tgtcnt].lbl = l;
             m->tgts[m->tgtcnt].inp = mods[l].inpcnt++;

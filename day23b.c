@@ -135,7 +135,7 @@ int main()
 {
     FILE* f = fopen("day23.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     memset(a, '#', sizeof(a));
     while (fgets(b, sizeof(b), f)) {

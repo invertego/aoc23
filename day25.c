@@ -59,14 +59,14 @@ int main()
 {
     FILE* f = fopen("day25.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     while (fgets(b, sizeof(b), f)) {
         char* ctx;
-        char* t = strtok_s(b, ":", &ctx);
+        char* t = strtok_r(b, ":", &ctx);
         int i = LABEL(t);
         vert_t* vi = &verts[i];
-        while ((t = strtok_s(NULL, " \n", &ctx))) {
+        while ((t = strtok_r(NULL, " \n", &ctx))) {
             int j = LABEL(t);
             bool skip = false;
             for (int k = 0; k < COUNT(pairs); k++) {

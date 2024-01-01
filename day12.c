@@ -12,7 +12,7 @@ char pat[21 * 5 + 1];
 int patlen;
 int groups[6 * 5];
 int groupcnt;
-int64_t memo[21 * 5 + 1 + 1][6 * 5 + 1];
+long long memo[21 * 5 + 1 + 1][6 * 5 + 1];
 
 bool canplace(int idx, int len)
 {
@@ -24,7 +24,7 @@ bool canplace(int idx, int len)
     return true;
 }
 
-int64_t solve(int idx, int cnt) {
+long long solve(int idx, int cnt) {
     assert((char*)&memo[idx][cnt] < (char*)memo + sizeof(memo));
     if (memo[idx][cnt] > -1) return memo[idx][cnt];
     if (cnt == groupcnt) {
@@ -49,9 +49,9 @@ int64_t solve(int idx, int cnt) {
         return memo[idx][cnt] = 1;
     }
     if (idx >= patlen) return memo[idx][cnt] = 0;
-    int64_t sols = 0;
+    long long sols = 0;
     int len = groups[cnt];
-    int64_t a = 0, b = 0;
+    long long a = 0, b = 0;
     char tmp[20];
     assert(len + 1 <= sizeof(tmp));
     if (canplace(idx, len)) {
@@ -81,12 +81,12 @@ int main()
 {
     FILE* f = fopen("day12.txt", "r");
     char b[256];
-    int64_t sum = 0;
+    long long sum = 0;
 
     while (fgets(b, sizeof(b), f)) {
         //*strchr(b, '\n') = 0;
         char* ctx;
-        char* t = strtok_s(b, " ", &ctx);
+        char* t = strtok_r(b, " ", &ctx);
         strcpy(pat, t);
 #if PART == 1
         for (int i = 1; i < 5; i++) {
@@ -98,7 +98,7 @@ int main()
         assert(patlen + 1 <= sizeof(pat));
         printf("%s", pat);
         groupcnt = 0;
-        while ((t = strtok_s(NULL, ",", &ctx))) {
+        while ((t = strtok_r(NULL, ",", &ctx))) {
             int val;
             sscanf(t, "%d", &val);
             groups[groupcnt++] = val;
@@ -115,7 +115,7 @@ int main()
         }
         printf("\n");
         memset(memo, -1, sizeof(memo));
-        int64_t sols = solve(0, 0);
+        long long sols = solve(0, 0);
         sum += sols;
         printf("%lld\n", sols);
         //break;

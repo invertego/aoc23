@@ -15,7 +15,7 @@
 #define MAX(a,b) ((a) > (b) ? (a) : (b))
 #define COUNT(x) (sizeof(x) / sizeof((x)[0]))
 
-typedef int64_t coord_t[3];
+typedef long long coord_t[3];
 
 typedef union {
     struct { coord_t p, v; };
@@ -54,8 +54,8 @@ int part1()
         double a2 = (x1-x3)*(y1-y2)-(y1-y3)*(x1-x2);
         double b2 = (x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);
         if (b1 == 0) continue;
-        if (a1 < 0 != b1 < 0) continue;
-        if (a2 < 0 != b2 < 0) continue;
+        if ((a1 < 0) != (b1 < 0)) continue;
+        if ((a2 < 0) != (b2 < 0)) continue;
         double x = x1 + (x2-x1)*(a1/b1);
         double y = y1 + (y2-y1)*(a1/b1);
         //double x = x3 + (x4-x3)*(a2/b2);
@@ -200,7 +200,7 @@ void minimize(int nx, int ny, int nz, double scale, double* smallest, int* small
     }
 }
 
-int64_t part2()
+long long part2()
 {
     const double scale = 1e12;
     double smallest = DBL_MAX;
@@ -224,7 +224,7 @@ int64_t part2()
     vec3 ax, ay;
     basis(nx, ny, nz, ax, ay);
     vec3 r = {nx,ny,nz};
-    int64_t sum = 0;
+    long long sum = 0;
     for (int i = 0; i < stonecnt; i++) {
         double t;
         for (int j = 0; j < stonecnt; j++) {
@@ -233,8 +233,8 @@ int64_t part2()
         }
         //printf("%f\n", t * scale);
         coord_t* c = stones[i].x;
-        int64_t ti = llround(t * scale);
-        int64_t oi[3];
+        long long ti = llround(t * scale);
+        long long oi[3];
         for (int j = 0; j < 3; j++) {
             oi[j] = c[0][j] + (c[1][j] - r[j]) * ti;
         }
@@ -249,15 +249,15 @@ int main()
 {
     FILE* f = fopen("day24.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     while (fgets(b, sizeof(b), f)) {
         coord_t* st = stones[stonecnt++].x;
         char* ctx;
-        char* t = strtok_s(b, ",", &ctx);
+        char* t = strtok_r(b, ",", &ctx);
         for (int i = 0; i < 6; i++) {
             sscanf(t, "%lld", &st[i/3][i%3]);
-            t = strtok_s(NULL, ", @\n", &ctx);
+            t = strtok_r(NULL, ", @\n", &ctx);
         }
         //print(st);
     }

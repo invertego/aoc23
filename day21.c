@@ -43,7 +43,7 @@ char vm[V_MASK + 1][V_MASK + 1];
 #define CNT(i,j) cnts[(((i-si)/m)+CNT_CAP/2)&(CNT_CAP-1)][(((j-sj)/n)+CNT_CAP/2)&(CNT_CAP-1)]
 int cnts[CNT_CAP][CNT_CAP];
 
-int64_t solve(int64_t x)
+long long solve(long long x)
 {
     return (15567 * x * x + 250 * x + 3) / 4;
 }
@@ -53,12 +53,12 @@ int main()
     FILE* f = fopen("day21.txt", "r");
     char b[256];
     int si = 0, sj = 0;
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     int i = 0;
     while (fgets(b, sizeof(b), f)) {
         char* ctx;
-        strtok_s(b, "\n", &ctx);
+        strtok_r(b, "\n", &ctx);
         char* s = strchr(b, 'S');
         if (s) { si = i; sj = s - b; *s = '.'; }
         m = n = strlen(b);
@@ -134,7 +134,7 @@ int main()
 #endif
 
 #if 0
-        int64_t cntsum = 0;
+        long long cntsum = 0;
         for (int i = 0; i < CNT_CAP; i++) {
             for (int j = 0; j < CNT_CAP; j++) {
                 printf("%5d ", cnts[i][j]);

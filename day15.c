@@ -36,7 +36,7 @@ int main()
 {
     FILE* f = fopen("day15.txt", "r");
     char b[256];
-    int64_t sum = 0;
+    long long sum = 0;
 
     while (fgets(b, sizeof(b), f)) {
         char* newline = strchr(b, '\n');
@@ -45,7 +45,7 @@ int main()
     }
 
     char* ctx;
-    char* t = strtok_s(input, ",", &ctx);
+    char* t = strtok_r(input, ",", &ctx);
     do {
 #if PART == 0
         sum += hash(t);
@@ -84,9 +84,9 @@ int main()
         }
         assert(*t == 0);
 #endif
-    } while ((t = strtok_s(NULL, ",", &ctx)));
+    } while ((t = strtok_r(NULL, ",", &ctx)));
 
-    int64_t sum2 = 0;
+    long long sum2 = 0;
     for (int i = 0; i < 256; i++) {
         box_t* box = &boxes[i];
         for (int j = 0; j < box->lenscnt; j++) {

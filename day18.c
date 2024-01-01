@@ -59,7 +59,7 @@ int main()
 {
     FILE* f = fopen("day18.txt", "r");
     char b[256];
-    int64_t sum = 0, sum2 = 0;
+    long long sum = 0, sum2 = 0;
 
     memset(a, ' ', sizeof(a));
     int i = 0, j = 0;
@@ -125,7 +125,7 @@ int main()
     qsort(&verti, vertcnt, sizeof(verti[0]), verticmp);
     qsort(&edge, edgecnt, sizeof(edge[0]), edgecmp);
 
-    int64_t total[2] = {0};
+    long long total[2] = {0};
     int prog = 0;
     for (int i = min[0]; i <= max[0]; i++) {
         int p = (i - min[0]) * 100 / (max[0] - min[0]);

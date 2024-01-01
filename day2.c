@@ -13,7 +13,7 @@ typedef struct {
 
 tuple parse(char* b) {
     char* ctx;
-    char* t = strtok_s(b, ",", &ctx);
+    char* t = strtok_r(b, ",", &ctx);
     tuple rgb = {0};
     while (t) {
         //printf("\t%s", t);
@@ -25,7 +25,7 @@ tuple parse(char* b) {
                 break;
             }
         }
-        t = strtok_s(NULL, ",", &ctx);
+        t = strtok_r(NULL, ",", &ctx);
     }
     //printf("\n");
     printf("%d %d %d\n", rgb.x[0], rgb.x[1], rgb.x[2]);
@@ -41,7 +41,7 @@ int main()
     int sum2 = 0;
     char* ctx;
     while (fgets(b, sizeof(b), f)) {
-        char* t = strtok_s(b, ":", &ctx);
+        char* t = strtok_r(b, ":", &ctx);
         if (!t) continue;
         int id;
         sscanf(strchr(t, ' '), "%d", &id);
@@ -49,7 +49,7 @@ int main()
         bool possible = true;
         int max[3] = {0};
         while (true) {
-            t = strtok_s(NULL, ";", &ctx);
+            t = strtok_r(NULL, ";", &ctx);
             if (!t) break;
             //printf("%s\n", t);
             tuple rgb = parse(t);
