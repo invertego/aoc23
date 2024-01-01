@@ -18,7 +18,7 @@ int decode(const char* b) {
 
 int main()
 {
-    FILE* f = fopen("day1b.txt", "r");
+    FILE* f = fopen("day1.txt", "r");
     char b[256];
     int sum = 0;
     while (fgets(b, sizeof(b), f)) {

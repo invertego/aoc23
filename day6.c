@@ -6,7 +6,7 @@
 
 int main()
 {
-    FILE* f = fopen("day6ex.txt", "r");
+    FILE* f = fopen("day6.txt", "r");
     char b[256];
     int a[2][4] = {0};
     int cnt = 0;
