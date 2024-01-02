@@ -1,6 +1,7 @@
 *.obj
 *.exe
 *.pdb
+*.ilk
 
 day[1-9]
 day[1-2][0-9]
